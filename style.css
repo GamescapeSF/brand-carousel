@@ -1,0 +1,79 @@
+body {
+	margin: 0;
+	background-color: white;
+}
+
+/* Slider wrapper */
+.slider {
+	padding: 0 80px;
+	margin: 0 auto;          
+	width: 100%;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.slick-list {
+	overflow: hidden; /* allow logos to show inside padding */
+	box-sizing: border-box;
+}
+
+/* Slide container */
+.slide {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: auto;
+	padding: 50px;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+/* Logo wrapper (add this div around each image/svg) */
+.logo-wrapper {
+	width: 150px;
+	height: 150px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Image or SVG */
+.logo-wrapper img,
+.logo-wrapper svg {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+	display: block;
+}
+
+
+/* Arrows */
+.slick-prev, .slick-next {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 50px;
+	height: 50px;
+	z-index: 8;
+	border-radius: 3px;
+	background: rgb(156, 14, 4) !important;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Positioning */
+.slick-prev {
+	left: 20px;
+}
+
+.slick-next {
+	right: 20px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+	display: none !important;
+}
