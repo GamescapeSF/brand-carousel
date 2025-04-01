@@ -1,9 +1,43 @@
-$(document).ready(function(){
+$(document).ready(function () {
 	$('.slider').slick({
-		centerMode:true,
-		slidesToShow: 0,
-		slidesToShow: 5,
+		infinite: true,
+		speed: 600,
 		cssEase: 'linear',
+		autoplay: true,
+		autoplaySpeed: 8000,
+		centerMode: true,
+		mobileFirst: true,
+		arrows: true,
+		dots:true,
+		slidesToShow: 1, // Mobile-first baseline
+
+		responsive: [
+			{
+				breakpoint: 640,
+				settings: {
+					slidesToShow: 2
+				}
+			},
+			{
+				breakpoint: 768,
+				settings: {
+					slidesToShow: 3
+				}
+			},
+			{
+				breakpoint: 1024,
+				settings: {
+					slidesToShow: 4,
+				}
+			},
+			{
+				breakpoint: 1440,
+				settings: {
+					slidesToShow: 5,
+				}
+			}
+		],
+		
 		prevArrow: `
 			<button type="button" class="slick-prev custom-arrow">
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
@@ -19,5 +53,4 @@ $(document).ready(function(){
 			</button>
 		`
 	});
-  });
-  
+});

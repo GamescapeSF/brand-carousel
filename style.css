@@ -28,10 +28,41 @@ body {
 	overflow: hidden;
 }
 
+/* Dots styling */
+
+.slick-dots li {
+	display: inline-block;
+	margin: 0 5px;
+}
+
+.slick-dots {
+	font-size: 20px;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex !important;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 8px;
+	padding: 1rem 0;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+.slick-dots li button:before {
+	color: grey;         /* base dot color */
+	opacity: 0.3;
+  }
+
+.slick-dots li.slick-active button:before {
+	color: #9c0e04; /* Highlight active dot */
+}
+
+
 /* Logo wrapper (add this div around each image/svg) */
 .logo-wrapper {
-	width: 150px;
-	height: 150px;
+	height: auto;
 	display: flex;
 	align-items: center;
 	justify-content: center;
