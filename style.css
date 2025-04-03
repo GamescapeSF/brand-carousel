@@ -62,17 +62,21 @@ body {
 
 /* Logo wrapper (add this div around each image/svg) */
 .logo-wrapper {
-	height: auto;
 	display: flex;
-	align-items: center;
 	justify-content: center;
+	align-items: center;
+	width: 200px; /* Default size, scale below */
+	height: 200px;
+	margin: 10px auto;
+	background: white; /* Optional for contrast */
+	border-radius: 8px;
+	overflow: hidden;
 }
 
-/* Image or SVG */
-.logo-wrapper img,
-.logo-wrapper svg {
-	max-width: 100%;
-	max-height: 100%;
+.logo-wrapper img, 
+.logo-wrapper svg{
+	max-width: 80%;
+	max-height: 80%;
 	object-fit: contain;
 	display: block;
 }
