@@ -11,7 +11,7 @@ html, body {
 }
 /* Slider wrapper */
 .slider {
-	padding: 0 80px;
+	padding: 0 30px;
 	margin: 0 auto;          
 	width: 100%;
 	box-sizing: border-box;
@@ -117,4 +117,8 @@ html, body {
 .slick-prev:before,
 .slick-next:before {
 	display: none !important;
+}
+
+@media (min-width: 768px) {
+
 }
