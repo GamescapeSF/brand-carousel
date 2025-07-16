@@ -1,15 +1,52 @@
+import { getAllBrands } from "./app.js";
 $(document).ready(function () {
-	$('.slider').slick({
-		infinite: true,
-		speed: 600,
-		cssEase: 'linear',
-		autoplay: true,
-		autoplaySpeed: 8000,
-		centerMode: true,
-		mobileFirst: true,
-		arrows: true,
-		dots:true,
-		slidesToShow: 1, // Mobile-first baseline
+	const $slider = $('.slider');
+	function getResponsiveSettings(cardCount) {
+		const breakpoints = [
+			{ breakpoint: 1024, slides: 3 },
+			{ breakpoint: 768, slides: 2 },
+			{ breakpoint: 640, slides: 1 }
+		];
+	
+		return breakpoints
+			.filter(bp => cardCount >= bp.slides)
+			.map(bp => ({
+				breakpoint: bp.breakpoint,
+				settings: {
+					slidesToShow: bp.slides
+				}
+			}));
+	}
+
+	function createSkeletonSlide() {
+		return `
+			<div class="slide">
+				<div class="logo-wrapper">
+					<img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="loading" />
+				</div>
+			</div>
+		`;
+	}
+
+	function loadSkeletons(count) {
+		for (let i = 0; i < count; i++) {
+			$slider.append(createSkeletonSlide());
+		}
+	}
+	getAllBrands().then((data) => {
+		const responsiveSettings = getResponsiveSettings(data.length);
+		loadSkeletons(Math.max(3, data.length));
+			$('.slider').slick({
+				infinite: data.length > 1,
+				speed: 600,
+				autoplay: true,
+				autoplaySpeed: 8000,
+				centerMode: data.length === 1, // only center if one slide
+				centerPadding: '0px',
+				dots: true,
+				mobileFirst: true,
+				slidesToShow: 1,
+				responsive: responsiveSettings, // Mobile-first baseline
 
 		responsive: [
 			{
@@ -53,4 +90,21 @@ $(document).ready(function () {
 			</button>
 		`
 	});
+		setTimeout(() => {
+			$slider.slick('slickRemove', null, null, true); // Clear all slides (skeletons)
+			data.forEach(item => {
+				console.log(item)
+				const slideHTML = `
+					<div class="slide">
+						<a href="${item.url}" target="_blank" rel="noopener noreferrer" class="card">
+							<div class="logo-wrapper">
+								<img src="${item.imageUrl}" alt="${item.title}" />
+							</div>
+						</a>
+					</div>
+				`;
+				$slider.slick('slickAdd', slideHTML);
+			});
+		}, 2000);
+	})
 });
